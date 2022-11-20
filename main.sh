@@ -100,15 +100,14 @@ while true; do
     read -p $'Do you want to include tests for your program? [y/n] \n' yn
     case $yn in
         [Yy]* ) read -n 1 -r -s -p $'If you want to write test cases for your program, open the README.md file after completion, and write them in. Press any key to continue... \n' irrelevant; break;;
-        [Nn]* ) echo Ok, got it.... ; break;;
+        [Nn]* ) echo Ok, got it....; break;;
         * ) echo Please answer y or n;;
     esac
 done
 echo $'\n'
 
-include_toc() {
+include_toc () {
     echo '## Table of Contents'>> README.md
-    echo $'\n'>> README.md
     echo '- [Installation](#installation)'>> README.md
     echo '- [Usage](#usage)'>> README.md
     echo '- [Credits](#credits)'>> README.md
@@ -117,24 +116,29 @@ include_toc() {
 }
 
 #Adding results to the README file
+echo "# $name">> README.md
+echo "# $date">> README.md
+echo $'\n'>> README.md
 echo "# $title">> README.md
 echo $'\n'>> README.md
 echo "## Description">> README.md
-echo $'\n'>> README.md
 echo "$description">> README.md
+echo $'\n'>> README.md
 
 #Include a table of contents? [y/n], if yes, create table of contents based on the inclusion of the sections below
 while true; do
     read -p $'If you think your README is going to be long, would you like to include a table of contents? [y/n] \n' yn
     case $yn in 
-        [Yy]* ) echo Got it, we will include a table of contents; include_toc(); break;;
+        [Yy]* ) echo Got it, we will include a table of contents; include_toc; break;;
         [Nn]* ) echo Ok, no table of contents today.; break;;
         * ) echo Please answer y or n;;
     esac
 done
 
+read -n 1 -r -s -p $'Thanks for your responses, the program will now write your responses to the README file. Press any key to continue... \n'
+
 #installation, usage, credits, badges, features, how to contribute, tests
-echo $'\n'>> README.md
+#echo $'\n'>> README.md
 echo "## Installation">> README.md
 echo "$installation">> README.md
 echo $'\n'>> README.md
@@ -142,19 +146,15 @@ echo "## Credits">> README.md
 echo "$creditname">> README.md
 echo $'\n'>> README.md
 echo "## Badges">> README.md
-echo $'\n'>> README.md
 echo "$badges">> README.md
 echo $'\n'>> README.md
-echo "## Features">> README.me
+echo "## Features">> README.md
+echo "$featurename">> README.md
 echo $'\n'>> README.md
-echo "$featurename"> README.md
+echo "## How to contribute">> README.md
+echo "$contribute">> README.md
 echo $'\n'>> README.md
-echo "## How to contribute">> README>md
-echo $'\n'>> README>md
-echo "$contribute">> README>md
-echo $'\n'>> README>md
-echo "## Tests">> README>md
-echo $'\n'>> README.md
+echo "## Tests">> README.md
 echo "[INSERT TEST CASES HERE}">> README.md
 
 read -n 1 -r -s -p $'This is the end of the README generator. Your file is stored at the location where main.sh is. Happy coding. Press any key to continue... \n'
